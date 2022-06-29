@@ -24,12 +24,19 @@
 // import building_24 from '../images/buildings/bulding_24.jpg';
 
 import { ImageContainer, ImagesRowContainer } from '../Styles/DataViewerStyles.js';
+import { useNavigate } from 'react-router-dom';
 
 const ImageList = (props) => {
     const tradeInInfo = props.tradeInInfo;
     const dataNumPerPage = props.dataNumPerPage;
     const currentPageFirstDataPointer = props.currentPageFirstDataPointer;
     const imageNumInRow = props.imageNumInRow;
+
+    const navigation = useNavigate();
+
+    const imageOnClick = (idf_num, year) => {
+        navigation(`/transaction_data/${idf_num}/${year}`);
+    }
 
     return (
         <>
@@ -39,8 +46,8 @@ const ImageList = (props) => {
                     {Array(imageNumInRow).fill(0).map((j, j_index) => {
                         const pointer_col = currentPageFirstDataPointer + pointer_row % dataNumPerPage * 4 + j_index + 1;
                         if (pointer_col < tradeInInfo.length) {
-                            return (<ImageContainer key = {j_index}>
-                                <img src = {require(`../images/buildings/bulding_${Math.ceil(Math.random()*24)}.jpg`)} />
+                            return (<ImageContainer key = {j_index}> 
+                                <img src = {require(`../images/buildings/bulding_${Math.ceil(Math.random()*24)}.jpg`)} onClick = {() => imageOnClick(tradeInInfo[pointer_col].idf_num, tradeInInfo[pointer_col].year)}/>
                                 <div>
                                     <p>{tradeInInfo[pointer_col].address1}</p>
                                     <p>{`면적 ${tradeInInfo[pointer_col].square_metre}(m*m)\t금액 ${tradeInInfo[pointer_col].price}(원)`}</p>

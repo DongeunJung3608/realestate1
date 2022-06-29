@@ -2,8 +2,11 @@ import SearchBox from "../Components/SearchBox";
 import { TaxListWrapper } from "../Styles/ListStyles";
 import TaxList from '../Components/TaxList.js';
 import { useState } from 'react';
+import { useParams } from "react-router-dom";
 
 const Tax = () => {
+    const params = useParams();
+
     const [tax, setTax] = useState({tax1:0, tax2:0, tax3:0, tax4:0, tax5:0});
 
     const searchOnClick = (price, investmentPrice) => {
@@ -62,7 +65,7 @@ const Tax = () => {
     
     return (
         <TaxListWrapper>
-            <SearchBox onClick = {searchOnClick}/>
+            <SearchBox onClick = {searchOnClick} price = {params.price}/>
             <TaxList tax = {tax}/>
         </TaxListWrapper>
     )

@@ -1,7 +1,8 @@
 import { SearchBoxWrapper, SearchBoxInput, SearchBoxButton } from '../Styles/SearchBoxStyles';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const SearchBox = (props) => {
+
     const [price, setPrice] = useState("");
     const [investmentPrice, setInvestmentPrice] = useState("");
 
@@ -16,7 +17,7 @@ const SearchBox = (props) => {
     return (
         <>
             <SearchBoxWrapper>
-                <SearchBoxInput placeholder='거래가격' onChange = {(event) => {priceOnChange(event)}}/>
+                <SearchBoxInput placeholder='거래가격' value={props.price && props.price} onChange = {(event) => {priceOnChange(event)}}/>
                 <SearchBoxInput placeholder='투자금' onChange = {(event) => {investmentPriceOnChange(event)}}/>
                 <SearchBoxButton onClick = {() => props.onClick(price, investmentPrice)}>Search</SearchBoxButton>
             </SearchBoxWrapper>
