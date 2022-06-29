@@ -1,24 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import Home from './Routes/Home.js';
+import ErrorPage from './Routes/ErrorPage';
+import Tax from './Routes/Tax.js';
+import Data from './Routes/Data.js';
+import Contact from './Routes/Contact';
+import SignIn from './Routes/SignIn';
+import SignUp from './Routes/SignUp';
+import ForgetPassword from './Routes/ForgetPassword';
+import Header from './Components/Header.js';
+import Footer from './Components/Footer.js';
+import MyPage from './Routes/MyPage';
 
 function App() {
+  useEffect(() => {
+    console.log('use effect test');
+  }, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Header></Header>
+      <Routes>
+        <Route path = "/" element = {<Home />} />
+        <Route path = "/tax_calculation" element = {<Tax />} />
+        <Route path = "/transaction_data" element = {<Data />} />
+        <Route path = "/contact_us" element = {<Contact />} />
+        <Route path = "/sign_in" element = {<SignIn />} />
+        <Route path = "/sign_up" element = {<SignUp />} />
+        <Route path = "/my_page" element = {<MyPage />} />
+        <Route path = "/forget_password" element = {<ForgetPassword />} />
+        <Route path = "*" element = {<ErrorPage />} /> 
+      </Routes>
+      <Footer></Footer>
+    </BrowserRouter>
   );
 }
 
