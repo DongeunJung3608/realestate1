@@ -44,25 +44,25 @@ const Home = () => {
 
         const income = priceInt * 0.04;
 
-        if (income * 12 <= 120000000) {
+        if (income <= 120000000) {
             tax3 = income * 0.06;
-        } else if (income * 12 < 460000000) {
+        } else if (income < 460000000) {
             tax3 = income * 0.15;
-        } else if (income * 12 < 880000000) {
+        } else if (income < 880000000) {
             tax3 = income * 0.24;
-        } else if (income * 12 < 1500000000) {
+        } else if (income < 1500000000) {
             tax3 = income * 0.35;
-        } else if (income * 12 < 3000000000) {
+        } else if (income < 3000000000) {
             tax3 = income * 0.38;
-        } else if (income * 12 < 5000000000) {
+        } else if (income < 5000000000) {
             tax3 = income * 0.40;
-        } else if (income * 12 < 10000000000) {
+        } else if (income < 10000000000) {
             tax3 = income * 0.42;
         } else {
             tax3 = income * 0.45;
         }
 
-        tax4 = 40000000 * 0.0368 + (income * 12 + 40000000 - 34000000) * 0.0667;
+        tax4 = 40000000 * 0.0368 + (income - 34000000) * 0.0667;
 
         tax5 = income * 0.1;
 
@@ -74,7 +74,8 @@ const Home = () => {
                 <img src = {backgroundImg}></img>
             </div>
             <div style = {{display: "flex", padding: "1rem", justifyContent: "space-around", position: "relative", top: "-100px"}}>
-                <MapCanvas onClick = {mapOnClick} />
+                {/* <MapCanvas onClick = {mapOnClick} /> */}
+                <div style={{width:"41%"}}></div>
                 <div style = {{display: "flex", flexDirection: "column", width: "59%"}}>
                     <SearchBox onClick = {searchOnClick}/>
                     <TaxList tax = {tax}/>

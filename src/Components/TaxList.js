@@ -2,7 +2,6 @@ import { ListWapper, ShowDetailSpan, List40Span, List10Span, List25Span, TaxList
 
 const TaxList = (props) => {
     const tax = props.tax;
-    console.log(tax.tax1 + tax.tax2 + tax.tax3 + tax.tax4 + tax.tax5);
     return (
         <>
             <ListWapper>

@@ -1,9 +1,10 @@
-import axios from "axios";
+// import axios from "axios";
 import { useEffect, useState } from "react";
 import { SelectBoxWrapper, SelectBoxButton } from '../Styles/SelectBoxStyles';
 import Pagination from '../Components/Pagination.js';
 import DataList from "../Components/DataList";
 import ImageList from "../Components/ImageList";
+import inputData from './input.json';
 
 const Data = () => {
     const viewStyleDetails = {quick: {dataNumPerPage: 12, numPerPage: 15}, detail: {dataNumPerPage: 30, numPerPage: 10}};
@@ -18,16 +19,28 @@ const Data = () => {
     });
     const [pageList, setPageList] = useState([]);
 
+    // const setExcelFile = (excelFile) => {
+    //     const workbook = XLSX.read(excelFile, {type:'buffer'});
+    //     const workSheetName = workbook.SheetNames[0];
+    //     const worksheet = workbook.Sheets[workSheetName];
+    //     const data = XLSX.utils.sheet_to_json(worksheet);
+    //     console.log(data);
+    // }
+
     useEffect(() => {
+        setTradeInfo(inputData);
+        const totalPage = Math.ceil(inputData.length/page.dataNumPerPage);
+        setPageList(Array(page.numPerPage).fill(0).map((i,index) => index + 1));
+        setPage((prevState) => ({ ...prevState, totalPage: totalPage }));
         // initialize trade_in_info data
-        axios.get(process.env.REACT_APP_API + `/trade`).then(response => {
-            setTradeInfo(response.data);
-            const totalPage = Math.ceil(response.data.length/page.dataNumPerPage);
-            setPageList(Array(page.numPerPage).fill(0).map((i,index) => index + 1));
-            setPage((prevState) => ({ ...prevState, totalPage: totalPage }));
-        }).catch(error => {
-            console.log("something gets wrong", error);
-        });
+        // axios.get(process.env.REACT_APP_API + `/trade`).then(response => {
+        //     setTradeInfo(response.data);
+        //     const totalPage = Math.ceil(response.data.length/page.dataNumPerPage);
+        //     setPageList(Array(page.numPerPage).fill(0).map((i,index) => index + 1));
+        //     setPage((prevState) => ({ ...prevState, totalPage: totalPage }));
+        // }).catch(error => {
+        //     console.log("something gets wrong", error);
+        // });
         // initialize page // setPage(1); // does this need?
     }, []);
 
@@ -59,18 +72,18 @@ const Data = () => {
     return (
         <div style = {{padding: "1rem"}}>
             <div style = {{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-                <div style = {{border: "1px solid grey", padding: "10px", width: "10%", textAlign: "center"}}>필터</div>
-                <SelectBoxWrapper>
-                    <SelectBoxButton id = "quick-view" onClick = {() => {selectBoxOnClick("quick")}}>quick view</SelectBoxButton>
-                    <SelectBoxButton id = "detail-view" onClick = {() => {selectBoxOnClick("detail")}}>detail view</SelectBoxButton>
+                {/* <div style = {{border: "1px solid grey", padding: "10px", width: "10%", textAlign: "center"}}>필터</div> */}
+                <SelectBoxWrapper style = {{width: "100%"}}>
+                    <SelectBoxButton id = "quick-view" onClick = {() => {selectBoxOnClick("quick")}} style={{border: "2px solid grey"}}>quick view</SelectBoxButton>
+                    <SelectBoxButton id = "detail-view" onClick = {() => {selectBoxOnClick("detail")}} style={{border: "2px solid grey"}}>detail view</SelectBoxButton>
                 </SelectBoxWrapper> 
-                <select name="pets" id="pet-select" style = {{border: "1px solid grey", padding: "10px", width: "20%", textAlign: "left"}}>
+                {/* <select name="pets" id="pet-select" style = {{border: "1px solid grey", padding: "10px", width: "20%", textAlign: "left"}}>
                     <option value="">Sort by</option>
                     <option value="dog">Price(High to Low)</option>
                     <option value="cat">Price(Low to High)</option>
                     <option value="hamster">Newest</option>
                     <option value="parrot">Square Feet</option>
-                </select>
+                </select> */}
             </div>
             {viewStyle === "detail" ? <DataList 
                 tradeInInfo = {tradeInInfo}

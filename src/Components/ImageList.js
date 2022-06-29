@@ -34,8 +34,32 @@ const ImageList = (props) => {
 
     const navigation = useNavigate();
 
-    const imageOnClick = (idf_num, year) => {
-        navigation(`/transaction_data/${idf_num}/${year}`);
+    const imageOnClick = (tradeInInfo) => {
+        console.log(tradeInInfo);
+        // navigation(`/transaction_data/${idf_num}/${year}`);
+
+        // address1: "서울특별시 강남구 개포동"
+        // address2: "개포로"
+        // floor: 16
+        // idf_num: 7
+        // price: 7400
+        // square_metre: 32.44
+        // trade_in_month: 1
+        // trade_in_year: 2006
+        // zoning1: "일반상업"
+        // zoning2: "업무"
+        const address1 = tradeInInfo.address1;
+        const address2 = tradeInInfo.address2;
+        const floor = tradeInInfo.floor;
+        const idf_num = tradeInInfo.idf_num;
+        const price = tradeInInfo.price;
+        const square_metre = tradeInInfo.square_metre;
+        const trade_in_month = tradeInInfo.trade_in_month;
+        const trade_in_year = tradeInInfo.trade_in_year;
+        const zoning1 = tradeInInfo.zoning1;
+        const zoning2 = tradeInInfo.zoning2;
+
+        navigation(`/transaction_data/${address1}/${address2}/${floor}/${idf_num}/${price}/${square_metre}/${trade_in_month}/${trade_in_year}/${zoning1}/${zoning2}`);
     }
 
     return (
@@ -47,7 +71,9 @@ const ImageList = (props) => {
                         const pointer_col = currentPageFirstDataPointer + pointer_row % dataNumPerPage * 4 + j_index + 1;
                         if (pointer_col < tradeInInfo.length) {
                             return (<ImageContainer key = {j_index}> 
-                                <img src = {require(`../images/buildings/bulding_${Math.ceil(Math.random()*24)}.jpg`)} onClick = {() => imageOnClick(tradeInInfo[pointer_col].idf_num, tradeInInfo[pointer_col].year)}/>
+                                <img src = {require(`../images/buildings/bulding_${Math.ceil(Math.random()*24)}.jpg`)} onClick = {
+                                    () => imageOnClick(tradeInInfo[pointer_col])}
+                                />
                                 <div>
                                     <p>{tradeInInfo[pointer_col].address1}</p>
                                     <p>{`면적 ${tradeInInfo[pointer_col].square_metre}(m*m)\t금액 ${tradeInInfo[pointer_col].price}(원)`}</p>

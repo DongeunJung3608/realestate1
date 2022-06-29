@@ -26,7 +26,7 @@ function App() {
         <Route path = "/tax_calculation" element = {<Tax />} />
         <Route path = "/tax_calculation/:price" element = {<Tax />} />
         <Route path = "/transaction_data" element = {<Data />} />
-        <Route path = "/transaction_data/:idf_num/:year" element = {<DataDetail />} />
+        <Route path = "/transaction_data/:address1/:address2/:floor/:idf_num/:price/:square_metre/:trade_in_month/:trade_in_year/:zoning1/:zoning2" element = {<DataDetail />} />
         {/* <Route path = "/contact_us" element = {<Contact />} /> */}
         <Route path = "/sign_in" element = {<SignIn />} />
         <Route path = "/sign_up" element = {<SignUp />} />

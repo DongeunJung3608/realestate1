@@ -17,7 +17,7 @@ const SearchBox = (props) => {
     return (
         <>
             <SearchBoxWrapper>
-                <SearchBoxInput placeholder='거래가격' value={props.price && props.price} onChange = {(event) => {priceOnChange(event)}}/>
+                <SearchBoxInput placeholder='거래가격' value={props.price && props.price*10000} onChange = {(event) => {priceOnChange(event)}}/>
                 <SearchBoxInput placeholder='투자금' onChange = {(event) => {investmentPriceOnChange(event)}}/>
                 <SearchBoxButton onClick = {() => props.onClick(price, investmentPrice)}>Search</SearchBoxButton>
             </SearchBoxWrapper>
