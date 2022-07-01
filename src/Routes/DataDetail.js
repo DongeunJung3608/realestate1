@@ -45,7 +45,7 @@ const DataDetail = () => {
                 <MyPageRow><MyPageSpan>{"주소"}</MyPageSpan><MyPageSpan>{params && params.address1+" "+params.address2}</MyPageSpan></MyPageRow>
                 <MyPageRow><MyPageSpan>{"용도"}</MyPageSpan><MyPageSpan>{params && params.zoning1+" "+params.zoning2}</MyPageSpan></MyPageRow>
                 <MyPageRow><MyPageSpan>{"거래년월"}</MyPageSpan><MyPageSpan>{params && params.trade_in_year+"년"+" "+params.trade_in_month+"일"}</MyPageSpan></MyPageRow>
-                <MyPageRow><MyPageSpan>{"층"}</MyPageSpan><MyPageSpan>{params && params.floor+"층"}</MyPageSpan></MyPageRow>
+                <MyPageRow><MyPageSpan>{"층"}</MyPageSpan><MyPageSpan>{params && params.floor === "null" ? "-" : params.floor +"층"}</MyPageSpan></MyPageRow>
                 <MyPageRow><MyPageSpan>{"면적"}</MyPageSpan><MyPageSpan>{params && params.square_metre+"(제곱미터)"}</MyPageSpan></MyPageRow>
                 <MyPageBorderRow><MyPageSpan>{"거래가격"}</MyPageSpan><MyPageSpan>{params && params.price+"(만원)"}</MyPageSpan></MyPageBorderRow>
                 <MyPageNoneRow><MyPageSpan></MyPageSpan><MyPagePointerSpan onClick = {linkToCalculator}>계산기로 이동</MyPagePointerSpan></MyPageNoneRow>
